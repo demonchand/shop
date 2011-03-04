@@ -1,1 +1,5 @@
-<h1>Its works</h1>
+<% @collections.each do |x| %>
+<%= x.name %>
+    <%= x.price %>
+<%= button_to 'Add to Cart', line_items_path(:product_id => x) %>
+<% end %>

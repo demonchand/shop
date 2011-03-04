@@ -1,5 +1,7 @@
 Shop::Application.routes.draw do
-  #get "collection/index"
+  resources :line_items
+
+  get "collection/index"
   root :to  => "collection#index"
   resources :carts
 

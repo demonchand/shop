@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<%= link_to "continue the hunting", '/collection/index' %>
+<%= button_to "Empty cart", @cart, :method => :delete, :confirm  =>
+"Did you sure about that" %>
