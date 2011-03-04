@@ -15,6 +15,10 @@ GEM
       rack-mount (~> 0.6.13)
       rack-test (~> 0.5.6)
       tzinfo (~> 0.3.23)
+    activemerchant (1.12.0)
+      activesupport (>= 2.3.8)
+      braintree (>= 2.0.0)
+      builder (>= 2.0.0)
     activemodel (3.0.3)
       activesupport (= 3.0.3)
       builder (~> 2.1.2)
@@ -29,6 +33,8 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.7)
+    braintree (2.8.0)
+      builder
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -69,5 +75,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemerchant
   mysql2
   rails (= 3.0.3)

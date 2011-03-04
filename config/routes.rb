@@ -1,4 +1,6 @@
 Shop::Application.routes.draw do
+  resources :orders
+
   resources :line_items
 
   get "collection/index"
