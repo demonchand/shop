@@ -1,4 +1,6 @@
 Shop::Application.routes.draw do
+  get "collection/index"
+
   resources :carts
 
   resources :products
