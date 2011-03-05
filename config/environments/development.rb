@@ -31,5 +31,8 @@ Shop::Application.configure do
   }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end
 

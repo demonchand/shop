@@ -1,12 +1,13 @@
 Shop::Application.routes.draw do
-  resources :orders
+  #resources :orders
+  resources :orders, :new => { :express => :get }
   match 'carts/checkout' => 'carts#checkout'
   resources :line_items
 
   get "collection/index"
   root :to  => "collection#index"
   resources :carts
-
+#match 'orders/express' => 'orders#express'
   resources :products
 
   # The priority is based upon order of creation:

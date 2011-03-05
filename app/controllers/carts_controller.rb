@@ -89,12 +89,27 @@ class CartsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def confirm
+  redirect_to :action => 'index' unless params[:token]
+  
+  details_response = gateway.details_for(params[:token])
+  
+  if !details_response.success?
+    @message = details_response.message
+    render :action => 'error'
+    return
+  end
+    
+  @address = details_response.address
+end
+  
   private
   def gateway
      @gateway ||= PaypalExpressGateway.new(
     :login => "seller_1299232941_biz_api1.gmail.com",
     :password => "6LWSRTJWTLD9FMJB",
-    :signature => "AR9Pt8A5jeHO4g.gC-vXGDEp.Z8VAWS97jMqCze97gVnnyb0GWgksDj"
+    :signature => "AR9Pt8A5jeHO4g.gC-vXGDEp.Z8VAWS97jMqCze97gVnnyb0GWgksDj."
   )
   end
 end
