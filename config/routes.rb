@@ -2,6 +2,7 @@ Shop::Application.routes.draw do
   #resources :orders
   resources :orders, :new => { :express => :get }
   match 'carts/checkout' => 'carts#checkout'
+  match 'carts/confirm' => 'carts#confirm'
   resources :line_items
 
   get "collection/index"
