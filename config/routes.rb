@@ -1,6 +1,6 @@
 Shop::Application.routes.draw do
   resources :orders
-
+  match 'carts/checkout' => 'carts#checkout'
   resources :line_items
 
   get "collection/index"

@@ -1,4 +1,13 @@
 class CartsController < ApplicationController
+  include ActiveMerchant::Billing
+  def checkout
+    setup_response = gateway.setup_purchase(1000,
+    :ip                => request.remote_ip,
+    :return_url        => url_for(:action => 'confirm', :only_path => false),
+    :cancel_return_url => url_for(:action => 'index', :only_path => false)
+  )
+  redirect_to gateway.redirect_url_for(setup_response.token)
+  end
   # GET /carts
   # GET /carts.xml
   def index
@@ -79,5 +88,13 @@ class CartsController < ApplicationController
       format.html { redirect_to(carts_url) }
       format.xml  { head :ok }
     end
+  end
+  private
+  def gateway
+     @gateway ||= PaypalExpressGateway.new(
+    :login => "seller_1299232941_biz_api1.gmail.com",
+    :password => "6LWSRTJWTLD9FMJB",
+    :signature => "AR9Pt8A5jeHO4g.gC-vXGDEp.Z8VAWS97jMqCze97gVnnyb0GWgksDj"
+  )
   end
 end

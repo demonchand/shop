@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "continue the hunting", '/collection/index' %>
-<%= button_to "Empty cart", @cart, :method => :delete, :confirm  =>
-"Did you sure about that" %>
+<%= link_to "continue the hunting", '/collection/index' %> |
+<%#= link_to "check out", :url => {:action => "checkout"} %>
+<%= link_to "check Out", :action => "checkout" %>
+<%= button_to "Empty cart", @cart, :method => :delete, :confirm  => "Did you sure about that" %>
