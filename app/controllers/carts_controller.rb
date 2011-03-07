@@ -91,18 +91,29 @@ class CartsController < ApplicationController
   end
 
   def confirm
-  redirect_to :action => 'index' unless params[:token]
-  
-  details_response = gateway.details_for(params[:token])
-  
-  if !details_response.success?
+    redirect_to :action => 'index' unless params[:token]
+    details_response = gateway.details_for(params[:token])
+    
+    if !details_response.success?
     @message = details_response.message
     render :action => 'error'
     return
   end
-    
-  @address = details_response.address
-end
+    @address = details_response.address
+  end
+  def complete
+    purchase = gateway.purchase(5000,
+    :ip       => request.remote_ip,
+    :payer_id => params[:payer_id],
+    :token    => params[:token]
+                                 )
+  
+    if !purchase.success?
+      @message = purchase.message
+      render :action => 'error'
+      return
+    end
+  end
   
   private
   def gateway
