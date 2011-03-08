@@ -4,7 +4,7 @@ class CartsController < ApplicationController
     setup_response = gateway.setup_purchase(1000,
     :ip                => request.remote_ip,
     :return_url        => url_for(:action => 'confirm', :only_path => false),
-    :cancel_return_url => url_for(:action => 'index', :only_path => false)
+    :cancel_return_url => root_url#url_for(:action => 'index', :only_path => false)
   )
   redirect_to gateway.redirect_url_for(setup_response.token)
   end
@@ -102,7 +102,7 @@ class CartsController < ApplicationController
     @address = details_response.address
   end
   def complete
-    purchase = gateway.purchase(5000,
+    purchase = gateway.purchase(1000,
     :ip       => request.remote_ip,
     :payer_id => params[:payer_id],
     :token    => params[:token]
